@@ -28,10 +28,10 @@ class UpdateRequest extends FormRequest
 
 
 
-            'name' => 'required|unique:products,name,'.$this->route('product')->id.'|max:255',
+            'name' => 'required',
 
-            'image' => 'required|dimensions:min_width=100,min_height=200',
-            'price' => 'required|',
+            'image' => 'required',
+            'price' => 'required',
             'category_id' => 'integer|required|exists:App\Category,id',
             'provider_id' => 'integer|required|exists:App\User,id',
 

@@ -25,12 +25,12 @@ class StoreRequest extends FormRequest
     {
         return [
 
-'name' => 'string|required|max:255',
-'dni' => 'string|required|unique:clients|max:8',
-'rut' => 'string|required|unique:clients|max:11',
-'address' =>'string|required|max:255',
-'phone' => 'string|required|unique:clients|max:9',
-'email' => 'string|required|unique:clients|max:255|email:rfc,dns',
+'name' => 'required|string|max:60',
+'dni' => 'required',
+'rut' => 'required|string|max:11',
+'address' =>'required',
+'phone' => 'required|string|max:9',
+'email' => 'required',
 
 
         ];
@@ -64,7 +64,7 @@ class StoreRequest extends FormRequest
         'rut.min' =>'Se requieren 11 caracteres',
 
 
-      'address.string' => 'El valor es correcto',
+      'address.string' => 'Valor incorrecto',
       'address.max' => 'Solo se permiten 255 carateres',
 
       'phone.string' => 'El valor no es correcto',
@@ -75,7 +75,7 @@ class StoreRequest extends FormRequest
 
 
 
-            'email.string' => 'El valor no es correcto',
+            'email.string' => 'Valor incorrecto',
             'email.unique' => 'La direccion de correo electronico ya existe',
             'email.max' => 'Solo se permiten 255 caracteres',
             'email.email' => 'No es un correo electronico',

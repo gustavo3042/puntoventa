@@ -18,7 +18,7 @@ class CreateSalesTable extends Migration
 
             $table->unsignedBigInteger('client_id');
 
-            $table->foreign('client_id')->references('id')->on('clientes');
+            $table->foreign('client_id')->references('id')->on('clients');
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
@@ -28,7 +28,7 @@ class CreateSalesTable extends Migration
             $table->decimal('total');
 
             $table->enum('status',['VALID','CANCELED'])->default('VALID');
-            
+
 
 
 

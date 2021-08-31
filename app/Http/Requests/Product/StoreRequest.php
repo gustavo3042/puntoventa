@@ -26,10 +26,9 @@ class StoreRequest extends FormRequest
         return [
 
           'name' => 'required|unique:products|max:255',
-          'image' => 'required|dimensions:min_width=100,min_height=200',
+
           'price' => 'required|',
-          'category_id' => 'integer|required|exists:App\Category,id',
-          'provider_id' => 'integer|required|exists:App\User,id',
+
 
 
 
@@ -47,8 +46,7 @@ class StoreRequest extends FormRequest
   'name.unique'=>'El producto ya esta registrado',
   'name.max' => 'Solo se permiten 255 caracteres',
 
-  'image.required'=>'El campo es requerido',
-  'image.dimensions'=>'Solo se permiten imagenes de 100X200 px',
+
 
 
 
@@ -56,13 +54,8 @@ class StoreRequest extends FormRequest
 
 
 
-  'category_id.integer' => 'El valor tiene que ser entero',
-'category_id.required' => 'El campo es requerido',
-'category_id.exists' => 'La categoria no existe',
 
-'provider_id.integer' => 'El valor tiene que ser entero',
-'provider_id.required' => 'El campo es requerido',
-'provider_id.exists' => 'La categoria no existe',
+
 
 
       ];

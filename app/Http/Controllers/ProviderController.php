@@ -38,10 +38,11 @@ class ProviderController extends Controller
    */
   public function store(StoreRequest $request)
   {
-      Provider::create($request->all());
+
+  $provider =    Provider::create($request->all());
 
 
-      return redirect()->route('providers.index');
+      return redirect()->route('provider.index');
   }
 
   /**
@@ -81,7 +82,7 @@ class ProviderController extends Controller
     $provider->update($request->all());
 
 
-    return redirect()->route('providers.index');
+    return redirect()->route('provider.index');
 
   }
 
@@ -95,6 +96,6 @@ class ProviderController extends Controller
   {
       $provider->delete();
 
-      return redirect()->route('providers.index');
+      return redirect()->route('provider.index');
   }
 }

@@ -16,10 +16,11 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
 
-            $table->String('code')->unique();
+            $table->String('code')->unique()->nullable();
             $table->String('name')->unique();
-            $table->integer('stock');
-            $table->String('image');
+            $table->integer('stock')->default(0);
+            $table->string('image');
+
             $table->decimal('price',12,2);
             $table->enum('status',['ACTIVE','DEACTIVATED'])->default('ACTIVE');
             $table->unsignedBigInteger('category_id');

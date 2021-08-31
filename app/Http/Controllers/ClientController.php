@@ -42,9 +42,9 @@ class ClientController extends Controller
     {
 
 
-$post = Client::create($request->all());
+$client = Client::create($request->all());
 
-return redirect()->route('admin.client.index');
+return redirect()->route('client.index',$client);
 
 
     }
@@ -57,7 +57,8 @@ return redirect()->route('admin.client.index');
      */
     public function show(Client $client)
     {
-        //
+
+        return view('admin.client.show',compact('client'));
     }
 
     /**
@@ -68,7 +69,8 @@ return redirect()->route('admin.client.index');
      */
     public function edit(Client $client)
     {
-        //
+
+        return view('admin.client.edit',compact('client'));
     }
 
     /**
@@ -78,9 +80,13 @@ return redirect()->route('admin.client.index');
      * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(StoreRequest $request, Client $client)
     {
-        //
+
+        $client->update($request->all());
+
+        return redirect()->route('client.index',$client);
+
     }
 
     /**

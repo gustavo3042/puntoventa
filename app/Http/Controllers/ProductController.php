@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Product\StoreRequest;
 use App\Http\Requests\Product\UpdateRequest;
 
+use Illuminate\Support\Facades\Storage;
+
 class ProductController extends Controller
 {
     /**
@@ -49,9 +51,54 @@ class ProductController extends Controller
     public function store(StoreRequest $request)
     {
 
-Product::create($request->all());
 
-return redirect()->route('products.index');
+/*
+
+if ($request->hasFile('image')) {
+
+$file = $request->file('image');
+$image_name = time().'_'.$file->getClientOriginalName();
+$file->move(public_path("/image"),$image_name);
+
+
+}
+
+
+$product = Product::create($request->all()+[
+'image' => $image_name,
+
+]);
+
+
+*/
+
+
+
+if ($request->file('file')) {
+
+$file = $request->file('file');
+$image_name = time().'_'.$file->getClientOriginalName();
+$file->move(public_path("/image"),$image_name);
+
+}
+/*
+$file = $request->file('file');
+$imagen = time()."_".$file->getClientOriginalName();
+$file->move(public_path("/image"),$imagen);
+
+*/
+
+$product = Product::create($request->all() +[
+
+'image' => $image_name
+
+]);
+
+$product->update(['code' => $product->id]);
+
+
+
+return redirect()->route('product.index');
 
 
     }
@@ -90,11 +137,37 @@ return redirect()->route('products.index');
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRequest $request, Product $product)
+    public function update(StoreRequest $request, Product $product)
     {
-      $product->update($request->all());
 
-      return redirect()->route('products.index');
+
+      if ($request->file('file')) {
+
+      $file = $request->file('file');
+      $image_name = time().'_'.$file->getClientOriginalName();
+      $file->move(public_path("/image"),$image_name);
+
+
+      }
+
+
+       $product->update($request->all()+[
+      'image' => $image_name,
+
+
+      ]);
+
+
+
+
+$product->update($request->all());
+
+
+
+
+
+
+      return redirect()->route('product.index',$product);
     }
 
     /**
@@ -106,7 +179,7 @@ return redirect()->route('products.index');
     public function destroy(Product $product)
     {
         $product->delete();
-return redirect()->route('products.index');
+return redirect()->route('product.index');
 
     }
 }

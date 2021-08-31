@@ -22,4 +22,22 @@ public function provider(){
   return $this->belongsTo(Provider::class);
 }
 
+
+
+/*
+public function purchase(){
+
+  return $this->belongsTo(Product::class);
+}
+*/
+
+
+/*
+public function image(){
+
+  return $this->morphOne(Image::class, 'imageable');
+}
+
+*/
+
 }

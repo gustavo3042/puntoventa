@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Purchase;
 use App\Provider;
+use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests\Purchase\StoreRequest;
 use App\Http\Requests\Purchase\UpdateRequest;
+use Carbon\Carbon;
 
 class PurchaseController extends Controller
 {
@@ -34,7 +36,8 @@ class PurchaseController extends Controller
     {
 
 $providers = Provider::get();
-return view('admin.purchase.create',compact('providers'));
+$products = Product::get();
+return view('admin.purchase.create',compact('providers','products'));
 
     }
 
@@ -47,8 +50,13 @@ return view('admin.purchase.create',compact('providers'));
     public function store(StoreRequest $request)
     {
 
+    //  Auth::user()->id;
+    $purchase = Purchase::create($request->all()+[
+      'image' => "Images",
+      'user_id' => 1,
+      'purchase_date' => Carbon::now('America/Santiago'),
 
-    $purchase = Purchase::create($request->all());
+    ]);
 
 
     foreach ($request->product_id as $key => $product) {
