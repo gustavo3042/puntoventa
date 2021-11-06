@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Sale;
 use App\Client;
+use App\Product;
+use App\Purchase;
 use Illuminate\Http\Request;
 use App\Http\Requests\Sale\StoreRequest;
 use App\Http\Requests\Sale\UpdateRequest;
+use Carbon\Carbon;
+use App\User;
 
 class SaleController extends Controller
 {
@@ -15,6 +19,12 @@ class SaleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+public function __construct(){
+
+  $this->middleware('auth');
+}
+
     public function index()
     {
         $sales = Sale::get();
@@ -33,8 +43,10 @@ class SaleController extends Controller
 
 
 $clients = Client::get();
+$products = Product::get();
+$purchases = Purchase::get();
 
-return view('admin.sale.create',compact('clients'))
+return view('admin.sale.create',compact('clients','products','purchases'));
 
 
     }
@@ -47,12 +59,18 @@ return view('admin.sale.create',compact('clients'))
      */
     public function store(StoreRequest $request)
     {
-      $sale = Sale::create($request->all());
+      $sale = Sale::create($request->all()+[
+
+        'user_id' => auth()->user()->id,
+        'sale_date' => Carbon::now('America/Santiago'),
+      ]);
 
 
       foreach ($request->product_id as $key => $product) {
 
-$results[] = array("product_id"=>$request->product_id[$key],"quantity"=>$request->quantity[$key],"price"=>$request->price[$key],
+$results[] = array("product_id"=>$request->product_id[$key],
+"quantity"=>$request->quantity[$key],
+"price"=>$request->price[$key],
 "discount"=>$request->discount[$key]);
 
       }
@@ -60,7 +78,7 @@ $results[] = array("product_id"=>$request->product_id[$key],"quantity"=>$request
       $sale->saleDetails()->createMany($results);
 
 
-      return redirect()->route('sales.index');
+      return redirect()->route('sale.index');
 
 
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Purchase;
 use App\Provider;
 use App\Product;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\Purchase\StoreRequest;
 use App\Http\Requests\Purchase\UpdateRequest;
@@ -12,6 +13,20 @@ use Carbon\Carbon;
 
 class PurchaseController extends Controller
 {
+
+
+
+  public function __construct(){
+
+
+
+$this->middleware('auth');
+
+
+
+  }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -50,10 +65,10 @@ return view('admin.purchase.create',compact('providers','products'));
     public function store(StoreRequest $request)
     {
 
-    //  Auth::user()->id;
+    // Auth::user()->id;
     $purchase = Purchase::create($request->all()+[
       'image' => "Images",
-      'user_id' => 1,
+      'user_id' => auth()->user()->id,
       'purchase_date' => Carbon::now('America/Santiago'),
 
     ]);
@@ -68,7 +83,7 @@ $results[] =  array("product_id"=>$request->product_id[$key],
 
     $purchase->purchaseDetails()->createMany($results);
 
-return redirect()->route('purchases.index');
+return redirect()->route('purchase.index');
     }
 
     /**
@@ -79,7 +94,17 @@ return redirect()->route('purchases.index');
      */
     public function show(Purchase $purchase)
     {
-        return view('admin.purchase.show',compact('purchase'));
+
+      $subTotal = 0;
+      $purchaseDetails = $purchase->purchaseDetails;
+
+      foreach ($purchaseDetails as $purchaseDetail) {
+
+        $subTotal += $purchaseDetail->quantity * $purchaseDetail->price;
+
+      }
+
+        return view('admin.purchase.show',compact('purchase','purchaseDetails','subTotal'));
     }
 
     /**

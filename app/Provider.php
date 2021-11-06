@@ -14,4 +14,14 @@ class Provider extends Model
 
       return $this->hasMany(Product::class);
     }
+
+
+    public function purchases(){
+
+
+
+    return $this->belongsTo(Purchase::class);
+}
+
+
 }

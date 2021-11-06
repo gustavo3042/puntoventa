@@ -28,7 +28,7 @@ class CreatePurchasesTable extends Migration
 
             $table->enum('status',['VALID','CANCELED'])->default('VALID');
 
-            $table->String('picture');
+            $table->String('picture')->nullable();
 
 
         });

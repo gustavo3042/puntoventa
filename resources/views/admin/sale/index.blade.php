@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title','Info de Compras')
+@section('title','Info de Ventas')
 @section('styles')
 <style type="text/css">
     .unstyled-button {
@@ -18,11 +18,11 @@
 <div class="content-wrapper">
     <div class="page-header">
         <h3 class="page-title">
-            Compras
+            Ventas
         </h3>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Panel administrador</a></li>
+                <li class="breadcrumb-item"><a href="#">Gestion de Ventas</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Principal</li>
             </ol>
         </nav>
@@ -35,7 +35,7 @@
                     <div class="card-body">
 
                         <div class="d-flex justify-content-between">
-                            <h4 class="card-title">Compras</h4>
+                            <h4 class="card-title">Ventas</h4>
                             {{--  <i class="fas fa-ellipsis-v"></i>  --}}
                             <div class="btn-group">
                                 <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -43,7 +43,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right">
-                                  <a href="{{route('purchase.create')}}" class="dropdown-item">Agregar</a>
+                                  <a href="{{route('sale.create')}}" class="dropdown-item">Agregar</a>
 
                                   {{--  <button class="dropdown-item" type="button">Another action</button>
                                   <button class="dropdown-item" type="button">Something else here</button>  --}}
@@ -70,25 +70,25 @@
                           </thead>
                           <tbody>
 
-                            @foreach ($purchases as $purcha)
+                            @foreach ($sales as $sale)
 
                               <tr>
                                 <th scope="row">
 
-                                  <a href="{{route('purchase.show', $purcha)}}">  {{$purcha->id}}</a>
+                                  <a href="">  {{$sale->id}}</a>
 
 
                                 </th>
 
                                 <td>
 
-                                    <a href="">{{$purcha->purchase_date}}</a>
+                                    <a href=""></a>
 
 
 
                                 </td>
-                                  <td> {{$purcha->total}}</td>
-                                    <td> {{$purcha->status}}</td>
+                                  <td> </td>
+                                    <td> </td>
 
 
 
@@ -111,7 +111,7 @@
 
                                       <a href="#" class="jsgrid-button jsgrid-edit-button"><i class="fas fa-print"></i></a>
 
-                                      <a href="{{route('purchase.show', $purcha)}}" class="jsgrid-button jsgrid-edit-button"><i class="fas fa-eye"></i></a>
+                                      <a href="" class="jsgrid-button jsgrid-edit-button"><i class="fas fa-eye"></i></a>
 
 
 

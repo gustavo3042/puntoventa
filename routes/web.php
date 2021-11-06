@@ -7,6 +7,7 @@ use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\SaleController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,11 +20,11 @@ use App\Http\Controllers\PurchaseController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+  return view('welcome');
 });
 
 
-Route::get('',[HomeController::class, 'index'])->name('home.index');
+Route::get('/',[HomeController::class, 'index'])->name('home.index');
 
 
 //crud categorias rutas
@@ -61,5 +62,13 @@ Route::get('admin/purchase/create',[PurchaseController::class, 'create'])->name(
 
 
 
+Route::resource('sale','SaleController');
+Route::get('admin/sale/index',[SaleController::class, 'index'])->name('sale.index');
+Route::get('admin/sale/create',[SaleController::class, 'create'])->name('sale.create');
+
 
 //
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
