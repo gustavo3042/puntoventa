@@ -82,7 +82,7 @@
 
                                 <td>
 
-                                    <a href="">{{$purcha->purchase_date}}</a>
+                                  {{$purcha->purchase_date}}
 
 
 
@@ -107,9 +107,9 @@
                                       </button> -->
 
 
-                                      <a href="#" class="jsgrid-button jsgrid-edit-button"><i class="fas fa-file-pdf"></i></a>
+                                      <a href="{{route('purchase.pdf',$purcha)}}" class="jsgrid-button jsgrid-edit-button"><i class="fas fa-file-pdf"></i></a>
 
-                                      <a href="#" class="jsgrid-button jsgrid-edit-button"><i class="fas fa-print"></i></a>
+                                      <a href="" class="jsgrid-button jsgrid-edit-button"><i class="fas fa-print"></i></a>
 
                                       <a href="{{route('purchase.show', $purcha)}}" class="jsgrid-button jsgrid-edit-button"><i class="fas fa-eye"></i></a>
 

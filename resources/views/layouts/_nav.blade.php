@@ -21,6 +21,7 @@
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
+        <!--
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#page-layouts1" aria-expanded="false"
                 aria-controls="page-layouts">
@@ -39,12 +40,125 @@
                 </ul>
             </div>
         </li>
+-->
+
+
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#page-layouts1" aria-expanded="false"
+                aria-controls="page-layouts">
+                <i class="fas fa-store-alt menu-icon"></i>
+                <span class="menu-title">Local Principal</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="page-layouts1">
+
+
+                <ul class="nav flex-column sub-menu">
+
+
+                    <li class="nav-item d-none d-lg-block">
+
+                      <li class="nav-item">
+                      <a class="nav-link" href="{{route('purchase.index')}}">
+                          <i class="fas fa-cart-plus menu-icon"></i>
+                          <span class="menu-title">Compras</span>
+                      </a>
+                      </li>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                      <a class="nav-link" href="{{route('sale.index')}}">
+                          <i class="fas fa-shopping-cart menu-icon"></i>
+                          <span class="menu-title">Caja</span>
+                      </a>
+                    </li>
+
+
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('provider.index')}}">
+                            <i class="fas fa-shipping-fast menu-icon"></i>
+                            <span class="menu-title">Proveedores</span>
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('categoria.index')}}">
+                            <i class="fas fa-tags menu-icon"></i>
+                            <span class="menu-title">Categorías</span>
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('product.index')}}">
+                            <i class="fas fa-boxes menu-icon"></i>
+                            <span class="menu-title">Productos</span>
+                        </a>
+                    </li>
+
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('client.index')}}">
+                            <i class="fas fa-users menu-icon"></i>
+                            <span class="menu-title">Clientes</span>
+                        </a>
+                    </li>
+
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="">
+                            <i class="fas fa-box-open menu-icon"></i>
+                            <span class="menu-title">Bodega</span>
+                        </a>
+                    </li>
+
+                </ul>
+
+
+            </div>
+        </li>
+
+
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#page-layouts2" aria-expanded="false"
+                aria-controls="page-layouts">
+                <i class="fas fa-store-alt menu-icon"></i>
+                <span class="menu-title">Local Secundario</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="page-layouts2">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item d-none d-lg-block">
+                        <a class="nav-link" href="">Reportes por día</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Reportes por fecha</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+
+
+<!--
+
+
+
         <li class="nav-item">
             <a class="nav-link" href="{{route('purchase.index')}}">
                 <i class="fas fa-cart-plus menu-icon"></i>
                 <span class="menu-title">Compras</span>
             </a>
         </li>
+
+
         <li class="nav-item">
             <a class="nav-link" href="{{route('sale.index')}}">
                 <i class="fas fa-shopping-cart menu-icon"></i>
@@ -76,6 +190,8 @@
                 <span class="menu-title">Proveedores</span>
             </a>
         </li>
+
+      -->
         <li class="nav-item">
             <a class="nav-link" href="">
                 <i class="fas fa-user-tag menu-icon"></i>

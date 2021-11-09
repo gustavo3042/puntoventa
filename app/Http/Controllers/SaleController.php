@@ -92,7 +92,18 @@ $results[] = array("product_id"=>$request->product_id[$key],
      */
     public function show(Sale $sale)
     {
-        //
+
+      $subTotal = 0;
+      $saleDetails = $sale->saleDetails;
+
+      foreach ($saleDetails as $saleDetail) {
+
+        $subTotal += $saleDetail->quantity*$saleDetail->price-$saleDetail->quantity*$saleDetail->price*$saleDetail->discount/100;
+
+      }
+
+      return view('admin.sale.show',compact('sale','saleDetails','subTotal'));
+
     }
 
     /**

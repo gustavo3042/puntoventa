@@ -75,20 +75,22 @@
                               <tr>
                                 <th scope="row">
 
-                                  <a href="">  {{$sale->id}}</a>
+                                  <a href="{{route('sale.show',$sale)}}">{{$sale->id}}</a>
 
 
                                 </th>
 
                                 <td>
 
-                                    <a href=""></a>
+
+
+                                {{$sale->sale_date}}
 
 
 
                                 </td>
-                                  <td> </td>
-                                    <td> </td>
+                                  <td>{{$sale->total}} </td>
+                                    <td>{{$sale->status}} </td>
 
 
 

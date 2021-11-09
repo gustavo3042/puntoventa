@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Purchase\StoreRequest;
 use App\Http\Requests\Purchase\UpdateRequest;
 use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade as PDF; //importamos aqui con este codigo la utilizacion de pdf
 
 class PurchaseController extends Controller
 {
@@ -96,7 +97,7 @@ return redirect()->route('purchase.index');
     {
 
       $subTotal = 0;
-      $purchaseDetails = $purchase->purchaseDetails;
+      $purchaseDetails = $purchase->purchaseDetails; // con purchaseDetails accedo a todos los datos q estan relacionados con la tabla pruchase en este caso es purchaseDetails
 
       foreach ($purchaseDetails as $purchaseDetail) {
 
@@ -145,5 +146,24 @@ return redirect()->route('purchase.index');
       $purchase->delete();
 
       return redirect()->route('purchases.index');
+    }
+
+
+
+    public function pdf(Purchase $purchase){
+
+      $subTotal = 0;
+      $purchaseDetails = $purchase->purchaseDetails; // con purchaseDetails accedo a todos los datos q estan relacionados con la tabla pruchase en este caso es purchaseDetails
+
+      foreach ($purchaseDetails as $purchaseDetail) {
+
+        $subTotal += $purchaseDetail->quantity * $purchaseDetail->price;
+
+      }
+
+      $pdf = PDF::loadView('admin.purchase.pdf',compact('purchase','subTotal','purchaseDetails'));
+        return $pdf->download('Reporte_de_compra_'.$purchase->id.'.pdf');
+
+
     }
 }

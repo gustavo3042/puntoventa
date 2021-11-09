@@ -64,7 +64,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon3">%</span>
             </div>
-            <input type="number" class="form-control" name="tax" id="tax" aria-describedby="basic-addon3" value="18">
+            <input type="number" class="form-control" name="tax" id="tax" aria-describedby="basic-addon3" value="19">
         </div>
     </div>
     <div class="form-group col-md-3">

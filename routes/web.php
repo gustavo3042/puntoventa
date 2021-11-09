@@ -67,6 +67,8 @@ Route::get('admin/sale/index',[SaleController::class, 'index'])->name('sale.inde
 Route::get('admin/sale/create',[SaleController::class, 'create'])->name('sale.create');
 
 
+Route::get('purchase/pdf/{purchase}',[PurchaseController::class, 'pdf'])->name('purchase.pdf');
+
 //
 
 Auth::routes();
