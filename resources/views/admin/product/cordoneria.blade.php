@@ -33,7 +33,7 @@ height: 100%;
 
 
         <h3 class="page-title">
-            Registro de Producto: Lanas
+            Registro de Producto: Cordonería
         </h3>
 
 
@@ -85,7 +85,7 @@ height: 100%;
 
 
 
-                    @if($categoria->name == 'lanas')
+                    @if($categoria->name == 'Cordoneria')
 
 
 
@@ -104,47 +104,26 @@ height: 100%;
                     </div>
 
 
-                    <div class="form-group">
-                      <label for="codigoColor">Codigo Color</label>
-
-                      <input type="number" class="form-control" name="codigoColor" value="">
 
 
-                      @error ('codigoColor')
-                        <small class="text-danger">{{$message}}</small>
-                      @enderror
-
-                    </div>
+                      <input type="hidden" class="form-control" name="codigoColor" value="0">
 
 
-                        <div class="form-group">
-                          <label for="stock">kilo Stock</label>
-
-                          <input type="text" class="form-control" name="stock" value="">
 
 
-                          @error ('stock')
-                            <small class="text-danger">{{$message}}</small>
-                          @enderror
 
-                        </div>
+                          <input type="hidden" class="form-control" name="stock" value="0">
 
 
 
 
 
 
-                    <div class="form-group">
-                      <label for="totalObillos">Total Obillos</label>
-
-                      <input type="number" class="form-control" name="totalObillos" value="">
 
 
-                      @error ('totalObillos')
-                        <small class="text-danger">{{$message}}</small>
-                      @enderror
 
-                    </div>
+                      <input type="hidden" class="form-control" name="totalObillos" value="0">
+
 
 
 

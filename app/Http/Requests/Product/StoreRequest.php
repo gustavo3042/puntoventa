@@ -25,9 +25,11 @@ class StoreRequest extends FormRequest
     {
         return [
 
-          'name' => 'required|unique:products|max:255',
-
-          'price' => 'required|',
+          'name' => 'required|max:255',
+          'codigoColor' =>'required|',
+          'stock' =>'required|',
+          'totalObillos' =>'required|',
+          'price' => 'required|'
 
 
 
@@ -43,11 +45,15 @@ class StoreRequest extends FormRequest
 
   'name.string'=>'El valor no es correcto',
   'name.required'=>'El campo es requerido',
-  'name.unique'=>'El producto ya esta registrado',
+  //'name.unique'=>'El producto ya esta registrado',
   'name.max' => 'Solo se permiten 255 caracteres',
 
 
 
+'codigoColor' =>'El codigo es requerido',
+
+'stock'=>'El stock es requerido',
+'totalObillos'=>'La cantidad de obillos es requerida',
 
 
   'price.required'=>'El campo es requerido',

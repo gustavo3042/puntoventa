@@ -52,7 +52,7 @@ class UpdateRequest extends FormRequest
 
   'name.string'=>'El valor no es correcto',
   'name.required'=>'El campo es requerido',
-  'name.unique'=>'El producto ya esta registrado',
+//  'name.unique'=>'El producto ya esta registrado',
   'name.max' => 'Solo se permiten 255 caracteres',
 
   'image.required'=>'El campo es requerido',

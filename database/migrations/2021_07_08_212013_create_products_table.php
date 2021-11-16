@@ -17,8 +17,10 @@ class CreateProductsTable extends Migration
             $table->id();
 
             $table->String('code')->unique()->nullable();
-            $table->String('name')->unique();
+            $table->String('name')->nullable();
+            $table->integer('codigoColor')->nullable();
             $table->integer('stock')->default(0);
+            $table->integer('totalObillos')->nullable();
             $table->string('image');
 
             $table->decimal('price',12,2);

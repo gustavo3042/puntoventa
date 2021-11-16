@@ -61,7 +61,7 @@
                       <li class="nav-item">
                       <a class="nav-link" href="{{route('purchase.index')}}">
                           <i class="fas fa-cart-plus menu-icon"></i>
-                          <span class="menu-title">Compras</span>
+                          <span class="menu-title">Compra Proveedores</span>
                       </a>
                       </li>
 

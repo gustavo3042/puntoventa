@@ -42,7 +42,9 @@
                                     <i class="fas fa-ellipsis-v"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                  <a href="{{route('product.create')}}" class="dropdown-item">Agregar</a>
+                                  <a href="{{route('product.create')}}" class="dropdown-item">Agregar Lanas</a>
+                                      <a href="{{route('product.persiana')}}" class="dropdown-item">Agregar Persianas</a>
+                                      <a href="{{route('product.cordoneria')}}" class="dropdown-item">Agregar Cordonería</a>
 
                                   {{--  <button class="dropdown-item" type="button">Another action</button>
                                   <button class="dropdown-item" type="button">Something else here</button>  --}}
@@ -59,10 +61,11 @@
                             <tr>
                               <th>ID</th>
                               <th>Nombre</th>
-                              <th>Stock</th>
+                              <th>Stock kilos</th>
                               <th>Estado</th>
                               <th>Categoria</th>
                               <th>Acciones</th>
+
                             </tr>
                           </thead>
                           <tbody>
@@ -92,6 +95,11 @@
                                                                               <i class="far fa-edit"></i>
                                                                           </a>
 
+
+
+
+
+
                                       <button class="jsgrid-button jsgrid-delete-button unstyled-button" type="submit" title="Eliminar">
                                         <i class="far fa-trash-alt"></i>
                                       </button>
@@ -100,6 +108,10 @@
 
 
                                     </td>
+
+
+
+
                               </tr>
 
                             @endforeach

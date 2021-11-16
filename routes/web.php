@@ -47,6 +47,8 @@ Route::get('admin/provider/{provider}/edit',[ProviderController::class, 'edit'])
 Route::resource('product','ProductController');
 Route::get('admin/product/index',[ProductController::class, 'index'])->name('product.index');
 Route::get('admin/product/create',[ProductController::class, 'create'])->name('product.create');
+Route::get('admin/product/persiana',[ProductController::class, 'persiana'])->name('product.persiana');
+Route::get('admin/product/cordoneria',[ProductController::class, 'cordoneria'])->name('product.cordoneria');
 Route::get('admin/product/{product}/edit',[ProductController::class, 'edit'])->name('product.edit');
 
 

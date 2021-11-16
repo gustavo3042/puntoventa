@@ -13,7 +13,7 @@
 
 
         <h3 class="page-title">
-            Registro de Compras
+            Registro de Compras a Proveedores
         </h3>
 
 

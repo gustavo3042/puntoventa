@@ -31,15 +31,52 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Product $product)
     {
 
 
-      $categories = Category::get();
+      $categories = Category::where('name','=','lanas')->get();
 
       $providers = Provider::get();
 
-          return view('admin.product.create',compact('categories','providers'));
+
+
+
+
+          return view('admin.product.create',compact('categories','providers','product'));
+    }
+
+
+    public function persiana(Product $product)
+    {
+
+
+      $categories = Category::where('name','=','Persianas')->get();
+
+      $providers = Provider::get();
+
+
+
+
+
+          return view('admin.product.persiana',compact('categories','providers','product'));
+    }
+
+
+
+    public function cordoneria(Product $product)
+    {
+
+
+      $categories = Category::where('name','=','Cordoneria')->get();
+
+      $providers = Provider::get();
+
+
+
+
+
+          return view('admin.product.cordoneria',compact('categories','providers','product'));
     }
 
     /**
@@ -48,7 +85,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRequest $request)
+    public function store(StoreRequest $request,Product $product)
     {
 
 
@@ -88,9 +125,17 @@ $file->move(public_path("/image"),$imagen);
 
 */
 
+
+
+
+
+
 $product = Product::create($request->all() +[
 
 'image' => $image_name
+
+
+
 
 ]);
 
