@@ -12,6 +12,14 @@ use App\Http\Requests\Sale\UpdateRequest;
 use Carbon\Carbon;
 use App\User;
 
+use Mike42\Escpos\PrintConnectors\FilePrintConnector;
+use Mike42\Escpos\Printer;
+use Mike42\Escpos\EscopsImage;
+use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
+
+
+use Barryvdh\DomPDF\Facade as PDF; //importamos aqui con este codigo la utilizacion de pdf
+
 class SaleController extends Controller
 {
     /**
@@ -20,10 +28,25 @@ class SaleController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-public function __construct(){
+     public function __construct(){
 
-  $this->middleware('auth');
-}
+       $this->middleware('auth');
+       $this->middleware('can:sale.create')->only(['create','store']);
+       $this->middleware('can:sale.index')->only(['index']);
+       $this->middleware('can:change.status.sales')->only(['change_status']);
+       $this->middleware('can:sale.pdf')->only(['pdf']);
+         $this->middleware('can:sale.print')->only(['print']);
+
+        $this->middleware('can:sale.show')->only(['show']);
+
+
+
+
+
+
+
+
+     }
 
     public function index()
     {
@@ -143,4 +166,92 @@ return view('admin.sale.edit',compact('clients'));
     {
         //
     }
+
+
+    public function pdf(Sale $sale)
+    {
+
+      $subTotal = 0;
+      $saleDetails = $sale->saleDetails;
+
+      foreach ($saleDetails as $saleDetail) {
+
+        $subTotal += $saleDetail->quantity*$saleDetail->price-$saleDetail->quantity*$saleDetail->price*$saleDetail->discount/100;
+
+      }
+
+
+      $pdf = PDF::loadView('admin.sale.pdf',compact('sale','subTotal','saleDetails'));
+        return $pdf->download('Reporte_de_venta_'.$sale->id.'.pdf');
+
+
+
+    }
+
+
+    public function print(Sale $sale){
+
+
+      try {
+
+
+        $subTotal = 0;
+        $saleDetails = $sale->saleDetails;
+
+        foreach ($saleDetails as $saleDetail) {
+
+          $subTotal += $saleDetail->quantity*$saleDetail->price-$saleDetail->quantity*$saleDetail->price*$saleDetail->discount/100;
+
+        }
+
+          $printer_name = "TM20";
+
+
+          $connector = new WindowsPrintConnector($printer_name);
+
+          $printer = new Printer($connector);
+          $printer->text("€ 9,95\n");
+
+          $printer->cut();
+          $printer->close();
+
+            return redirect()->back();
+
+      } catch (\Exception $e) {
+
+          return redirect()->back();
+
+      }
+
+
+
+
+
+    }
+
+    public function change_status(Sale $sale ){
+
+
+      if ($sale->status == 'VALID') {
+
+
+      $sale->update(['status'=>'CANCELED']);
+
+      return redirect()->back();
+
+
+    }else{
+
+
+        $sale->update(['status'=>'VALID']);
+        return redirect()->back();
+
+
+    }
+
+
+    }
+
+
+
 }

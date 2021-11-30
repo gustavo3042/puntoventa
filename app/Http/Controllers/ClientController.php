@@ -14,6 +14,22 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+     public function __construct(){
+
+       $this->middleware('auth');
+       $this->middleware('can:client.create')->only(['create','store']);
+       $this->middleware('can:client.index')->only(['index']);
+       $this->middleware('can:client.edit')->only(['edit','update']);
+        $this->middleware('can:client.show')->only(['show']);
+         $this->middleware('can:client.destroy')->only(['destroy']);
+
+
+
+     }
+
+
     public function index()
     {
 

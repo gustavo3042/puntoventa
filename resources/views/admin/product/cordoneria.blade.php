@@ -92,7 +92,7 @@ height: 100%;
 
 
                     <div class="form-group">
-                      <label for="name">Marca</label>
+                      <label for="name">Detalle</label>
 
                       <input type="text" class="form-control" name="name" value="">
 
@@ -106,13 +106,28 @@ height: 100%;
 
 
 
+
+
+
+
+
                       <input type="hidden" class="form-control" name="codigoColor" value="0">
 
 
 
 
 
-                          <input type="hidden" class="form-control" name="stock" value="0">
+                      <div class="form-group">
+                        <label for="stock">Cantidad</label>
+
+                        <input type="text" class="form-control" name="stock" value="">
+
+
+                        @error ('stock')
+                          <small class="text-danger">{{$message}}</small>
+                        @enderror
+
+                      </div>
 
 
 

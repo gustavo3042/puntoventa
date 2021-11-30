@@ -16,7 +16,7 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="{{route('home')}}">
                 <i class="fa fa-home menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
             </a>
@@ -129,8 +129,8 @@
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#page-layouts2" aria-expanded="false"
                 aria-controls="page-layouts">
-                <i class="fas fa-store-alt menu-icon"></i>
-                <span class="menu-title">Local Secundario</span>
+                <i class="fas fa-chart-line menu-icon"></i>
+                <span class="menu-title">Reportes</span>
                 <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="page-layouts2">
@@ -193,13 +193,13 @@
 
       -->
         <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="{{route('user.index')}}">
                 <i class="fas fa-user-tag menu-icon"></i>
                 <span class="menu-title">Usuarios</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="{{route('role.index')}}">
                 <i class="fas fa-user-cog menu-icon"></i>
                 <span class="menu-title">Roles</span>
             </a>

@@ -19,9 +19,19 @@ class PurchaseController extends Controller
 
   public function __construct(){
 
+    $this->middleware('auth');
+    $this->middleware('can:purchase.create')->only(['create','store']);
+    $this->middleware('can:purchase.index')->only(['index']);
+    $this->middleware('can:change.status.purchases')->only(['change_status']);
+    $this->middleware('can:purchase.pdf')->only(['pdf']);
+      $this->middleware('can:upload.purchase')->only(['upload']);
+
+     $this->middleware('can:purchase.show')->only(['show']);
 
 
-$this->middleware('auth');
+
+
+
 
 
 
@@ -166,4 +176,36 @@ return redirect()->route('purchase.index');
 
 
     }
+
+
+          public function upload(Request $request, Purchase $purchase){
+
+    //
+
+          }
+
+
+          public function change_status(Purchase $purchase){
+
+
+            if ($purchase->status == 'VALID') {
+
+
+            $purchase->update(['status'=>'CANCELED']);
+
+            return redirect()->back();
+
+
+          }else{
+
+
+              $purchase->update(['status'=>'VALID']);
+              return redirect()->back();
+
+
+          }
+
+
+          }
+
 }

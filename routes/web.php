@@ -8,6 +8,9 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SaleController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoleController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,16 +21,24 @@ use App\Http\Controllers\SaleController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
   return view('welcome');
 });
+
+*/
 
 
 Route::get('/',[HomeController::class, 'index'])->name('home.index');
 
 
 //crud categorias rutas
+
+
+Route::get('sale/reports_day',[ReportController::class, 'reports_day'])->name('reports.day');
+Route::get('sale/reports_date',[ReportController::class, 'reports_date'])->name('reports.date');
+
+Route::post('sale/{id}',[ReportController::class, 'report_results'])->name('report.results');
 
 Route::resource('categories','CategoryController');
 Route::get('admin/categories/index',[CategoryController::class, 'index'])->name('categoria.index');
@@ -58,18 +69,50 @@ Route::get('admin/client/create',[ClientController::class, 'create'])->name('cli
 Route::get('admin/client/{client}/edit',[ClientController::class, 'edit'])->name('client.edit');
 
 
-Route::resource('purchase','PurchaseController');
+Route::resource('purchase','PurchaseController')->except(['edit','update','destroy']);
 Route::get('admin/purchase/index',[PurchaseController::class, 'index'])->name('purchase.index');
 Route::get('admin/purchase/create',[PurchaseController::class, 'create'])->name('purchase.create');
 
 
 
-Route::resource('sale','SaleController');
+Route::resource('sale','SaleController')->except(['edit','update','destroy']);;
 Route::get('admin/sale/index',[SaleController::class, 'index'])->name('sale.index');
 Route::get('admin/sale/create',[SaleController::class, 'create'])->name('sale.create');
 
 
 Route::get('purchase/pdf/{purchase}',[PurchaseController::class, 'pdf'])->name('purchase.pdf');
+Route::get('sales/pdf/{sale}',[SaleController::class, 'pdf'])->name('sale.pdf');
+
+
+Route::get('sales/print/{sale}',[SaleController::class, 'print'])->name('sale.print');
+
+
+Route::resource('business','BusinessController')->only(['index','update']);
+
+
+Route::resource('printers','PrinterController')->only(['index','update']);
+
+
+Route::get('purchase/upload/{purchase}',[PurchaseController::class, 'upload'])->name('upload.purchase');
+
+
+
+
+Route::get('change_status/product/{product}',[ProductController::class, 'change_status']);
+Route::get('change_status/purchase/{purchase}',[PurchaseController::class,'change_status']);
+Route::get('change_status/sale/{sale}',[SaleController::class, 'change_status']);
+
+
+
+
+Route::resource('user','UserController');
+Route::get('admin/user/index',[UserController::class,'index'])->name('user.index');
+
+
+Route::resource('role','RoleController');
+Route::get('admin/role/index',[RoleController::class,'index'])->name('role.index');
+
+
 
 //
 
