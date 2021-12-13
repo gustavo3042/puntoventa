@@ -16,8 +16,8 @@ class businessTableSeeder extends Seeder
 
       Business::create([
 
-        'name'=>'Nombre de la empresa.',
-        'description' => 'Descripcion corta de la empresa.',
+        'name'=>'Persianas Concepcion.',
+        'description' => 'Venta de lanas,persianas y cordoneria.',
         'logo' => 'logo.png',
         'mail'=> 'Ejemplo@gmail.com',
         'address'=>'Arturo Prat 302 Chillan',

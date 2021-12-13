@@ -40,12 +40,16 @@
         </div>
     </div>
 
+
+<!--
     <div class="form-group col-md-4">
         <div class="form-group">
             <label for="price">Cateogoria_id</label>
             <input type="text" class="form-control" name="category_id" id="category_id" aria-describedby="helpId" disabled>
         </div>
     </div>
+
+  -->
   </div>
 
 
@@ -58,15 +62,12 @@
             <input type="number" class="form-control" name="quantity" id="quantity" aria-describedby="helpId">
         </div>
     </div>
-    <div class="form-group col-md-3">
-        <label for="tax">Impuesto</label>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon3">%</span>
-            </div>
-            <input type="number" class="form-control" name="tax" id="tax" aria-describedby="basic-addon3" value="19">
-        </div>
-    </div>
+
+
+
+    <input type="hidden" class="form-control" name="tax" id="tax" aria-describedby="basic-addon3" value="19">
+
+
     <div class="form-group col-md-3">
         <label for="discount">Porcentaje de descuento</label>
         <div class="input-group">

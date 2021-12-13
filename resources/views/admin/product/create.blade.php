@@ -118,7 +118,7 @@ height: 100%;
 
 
                         <div class="form-group">
-                          <label for="stock">kilo Stock</label>
+                          <label for="stock">Stock</label>
 
                           <input type="text" class="form-control" name="stock" value="">
 
@@ -135,7 +135,7 @@ height: 100%;
 
 
                     <div class="form-group">
-                      <label for="totalObillos">Total Obillos</label>
+                      <label for="totalObillos">Total Kilos</label>
 
                       <input type="number" class="form-control" name="totalObillos" value="">
 

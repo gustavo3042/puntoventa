@@ -31,7 +31,19 @@ class BusinessController extends Controller
 
 
 
-      $business->update($request->all());
+      if ($request->file('picture')) {
+
+      $file = $request->file('picture');
+      $image_name = time().'_'.$file->getClientOriginalName();
+      $file->move(public_path("/image"),$image_name);
+
+      }
+
+
+      $business->update($request->all()+[
+
+        'logo' =>$image_name,
+      ]);
 
 
       return redirect()->route('business.index');

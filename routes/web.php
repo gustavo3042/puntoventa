@@ -11,6 +11,8 @@ use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\BusinessController;
+use App\Http\Controllers\PrinterController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,10 +37,10 @@ Route::get('/',[HomeController::class, 'index'])->name('home.index');
 //crud categorias rutas
 
 
-Route::get('sale/reports_day',[ReportController::class, 'reports_day'])->name('reports.day');
-Route::get('sale/reports_date',[ReportController::class, 'reports_date'])->name('reports.date');
+Route::get('report/reports_day',[ReportController::class, 'reports_day'])->name('reports.day');
+Route::get('report/reports_date',[ReportController::class, 'reports_date'])->name('reports.date');
 
-Route::post('sale/{id}',[ReportController::class, 'report_results'])->name('report.results');
+Route::post('report/report_results',[ReportController::class, 'report_results'])->name('report.results');
 
 Route::resource('categories','CategoryController');
 Route::get('admin/categories/index',[CategoryController::class, 'index'])->name('categoria.index');
@@ -88,9 +90,10 @@ Route::get('sales/print/{sale}',[SaleController::class, 'print'])->name('sale.pr
 
 
 Route::resource('business','BusinessController')->only(['index','update']);
+Route::get('business/index',[BusinessController::class, 'index'])->name('business.index');
 
-
-Route::resource('printers','PrinterController')->only(['index','update']);
+Route::resource('printer','PrinterController')->only(['index','update']);
+Route::get('printer',[PrinterController::class, 'index'])->name('printer.index');
 
 
 Route::get('purchase/upload/{purchase}',[PurchaseController::class, 'upload'])->name('upload.purchase');
@@ -98,9 +101,9 @@ Route::get('purchase/upload/{purchase}',[PurchaseController::class, 'upload'])->
 
 
 
-Route::get('change_status/product/{product}',[ProductController::class, 'change_status']);
-Route::get('change_status/purchase/{purchase}',[PurchaseController::class,'change_status']);
-Route::get('change_status/sale/{sale}',[SaleController::class, 'change_status']);
+Route::get('change_status/product/{product}',[ProductController::class, 'change_status'])->name('change.status.products');
+Route::get('change_status/purchase/{purchase}',[PurchaseController::class,'change_status'])->name('change.status.purchases');
+Route::get('change_status/sale/{sale}',[SaleController::class, 'change_status'])->name('change.status.sales');
 
 
 

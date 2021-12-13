@@ -136,10 +136,10 @@
             <div class="collapse" id="page-layouts2">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item d-none d-lg-block">
-                        <a class="nav-link" href="">Reportes por día</a>
+                        <a class="nav-link" href="{{route('reports.day')}}">Reportes por día</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Reportes por fecha</a>
+                        <a class="nav-link" href="{{route('reports.date')}}">Reportes por fecha</a>
                     </li>
                 </ul>
             </div>
@@ -214,10 +214,10 @@
             <div class="collapse" id="page-layouts">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item d-none d-lg-block">
-                        <a class="nav-link" href="">Empresa</a>
+                        <a class="nav-link" href="{{route('business.index')}}">Empresa</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Impresora</a>
+                        <a class="nav-link" href="{{route('printer.index')}}">Impresora</a>
                     </li>
                 </ul>
             </div>

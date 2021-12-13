@@ -66,7 +66,7 @@ class SaleController extends Controller
 
 
 $clients = Client::get();
-$products = Product::get();
+$products = Product::where('status','ACTIVE')->get();
 $purchases = Purchase::get();
 
 return view('admin.sale.create',compact('clients','products','purchases'));

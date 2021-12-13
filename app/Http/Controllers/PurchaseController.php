@@ -62,7 +62,7 @@ class PurchaseController extends Controller
     {
 
 $providers = Provider::get();
-$products = Product::get();
+$products = Product::where('status','ACTIVE')->get();
 return view('admin.purchase.create',compact('providers','products'));
 
     }

@@ -53,7 +53,7 @@ class StoreRequest extends FormRequest
 'codigoColor' =>'El codigo es requerido',
 
 'stock'=>'El stock es requerido',
-'totalObillos'=>'La cantidad de obillos es requerida',
+'totalObillos'=>'La cantidad de Kilpos es requerida',
 
 
   'price.required'=>'El campo es requerido',

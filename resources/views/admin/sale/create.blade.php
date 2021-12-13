@@ -92,7 +92,7 @@ $("#guardar").hide();
 $("#product_id").change(mostrarValores);
 function mostrarValores() {
     datosProducto = document.getElementById('product_id').value.split('_');
-    $("#category_id").val(datosProducto[3]);
+  //  $("#category_id").val(datosProducto[3]);
     $("#price").val(datosProducto[2]);
     $("#stock").val(datosProducto[1]);
 }
@@ -146,12 +146,12 @@ function limpiar() {
     $("#discount").val("0");
 }
 function totales() {
-    $("#total").html("PEN " + total.toFixed(2));
+    $("#total").html("CHL " + total.toFixed(2));
 
     total_impuesto = total * impuesto / 100;
     total_pagar = total + total_impuesto;
-    $("#total_impuesto").html("PEN " + total_impuesto.toFixed(2));
-    $("#total_pagar_html").html("PEN " + total_pagar.toFixed(2));
+    $("#total_impuesto").html("CHL " + total_impuesto.toFixed(2));
+    $("#total_pagar_html").html("CHL " + total_pagar.toFixed(2));
     $("#total_pagar").val(total_pagar.toFixed(2));
 }
 function evaluar() {
@@ -166,8 +166,8 @@ function eliminar(index) {
     total_impuesto = total * impuesto / 100;
     total_pagar_html = total + total_impuesto;
     $("#total").html("PEN" + total);
-    $("#total_impuesto").html("PEN" + total_impuesto);
-    $("#total_pagar_html").html("PEN" + total_pagar_html);
+    $("#total_impuesto").html("CHL" + total_impuesto);
+    $("#total_pagar_html").html("CHL" + total_pagar_html);
     $("#total_pagar").val(total_pagar_html.toFixed(2));
     $("#fila" + index).remove();
     evaluar();

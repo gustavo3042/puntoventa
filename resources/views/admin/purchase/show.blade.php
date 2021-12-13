@@ -13,178 +13,92 @@
 
 @endsection
 @section('content')
-
-
-  <style>
-
-
-  .image-wrapper{
-
-position: relative;
-padding-bottom: 66.25%;
-
-  }
-
-
-  .image-wrapper img{
-
-position: absolute;
-object-fit: cover;
-height: 50%;
-width: 50%;
-  }
-
-
-
-
-
-  </style>
-
 <div class="content-wrapper">
-
-
-
     <div class="page-header">
-        <h3 class="page-title ">
+        <h3 class="page-title">
             Detalles de compra
         </h3>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Panel administrador</a></li> <li class="breadcrumb-item"><a href="{{route('purchase.index')}}">Compras</a></li>
+                <li class="breadcrumb-item"><a href="#">Panel administrador</a></li>
+                <li class="breadcrumb-item"><a href="#">Compras</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Detalles de compra</li>
             </ol>
         </nav>
     </div>
-
-
-
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
 
-                  <div class="form-group-row">
+                    <div class="form-group row">
+                        <div class="col-md-4 text-center">
+                            <label class="form-control-label" for="nombre"><strong>Proveedor</strong></label>
+                            <p>{{$purchase->provider->name}}</p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <label class="form-control-label" for="num_compra"><strong>Número Compra</strong></label>
+                            <p>{{$purchase->id}}</p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <label class="form-control-label" for="num_compra"><strong>Comprador</strong></label>
+                            <p>{{$purchase->user->name}}</p>
+                        </div>
+                    </div>
+                    <br /><br />
+                    <div class="form-group row ">
+                        <h4 class="card-title ml-3">Detalles de compra</h4>
+                        <div class="table-responsive col-md-12">
+                            <table id="detalles" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Producto</th>
+                                        <th>Precio (CHL)</th>
+                                        <th>Cantidad</th>
+                                        <th>SubTotal (CHL)</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th colspan="3">
+                                            <p align="right">SUBTOTAL:</p>
+                                        </th>
+                                        <th>
+                                            <p align="right">s/{{number_format($subTotal,2)}}</p>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="3">
+                                            <p align="right">TOTAL IMPUESTO ({{$purchase->tax}}%):</p>
+                                        </th>
+                                        <th>
+                                            <p align="right">s/{{number_format($subTotal*$purchase->tax/100,2)}}</p>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="3">
+                                            <p align="right">TOTAL:</p>
+                                        </th>
+                                        <th>
+                                            <p align="right">s/{{number_format($purchase->total,2)}}</p>
+                                        </th>
+                                    </tr>
 
-                    <div class="col-md-6 text-center">
-                      <label class="form-control-label" for="nombre">Nombre</label>
-
-              <p>       {{$purchase->provider->name}} </p>
-
+                                </tfoot>
+                                <tbody>
+                                    @foreach($purchaseDetails as $purchaseDetail)
+                                    <tr>
+                                        <td>{{$purchaseDetail->product->name }}</td>
+                                        <td>s/{{$purchaseDetail->price}}</td>
+                                        <td>{{$purchaseDetail->quantity}}</td>
+                                        <td>s/{{number_format($purchaseDetail->quantity*$purchaseDetail->price,2)}}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
-
-
-           <div class="col-md-6 text-center">
-
-            <label class="form-control-label" for="nombre">Rut</label>
-
-        <p>  {{$purchase->provider->rut}} </p>
-
-              </div>
-
-                  </div>
-
-
-
-
-                  <div class="form-group">
-
-
-                    <h4 class="card-title">Detalles de Compra</h4>
-
-                    <div class="table-responsive col-md-12">
-
-                      <table id="detalles" class="table table-striped">
-
-                        <thead>
-                          <tr>
-
-                            <th>Producto</th>
-                            <th>Precio(PEN)</th>
-                            <th>Cantidad</th>
-                            <th>SubTotal(PEN)</th>
-                          </tr>
-                        </thead>
-
-                        <tbody>
-                          <tr>
-
-
-                      @foreach ($purchaseDetails as $purchaseDetail)
-
-                          <td>{{$purchaseDetail->product->name}}</td>
-                          <td>s/{{$purchaseDetail->price}}</td>
-                          <td>{{$purchaseDetail->quantity}}</td>
-                          <td>s/{{number_format
-                            ($purchaseDetail->quantity*$purchaseDetail->price,
-                            2)}}</td>
-
-
-                      @endforeach
-
-                        </tr>
-                      </tbody>
-
-
-
-
-
-
-                      <tfoot>
-                        <tr>
-                          <th colspan="4">
-                            <p align="right">SubTotal.</p>
-
-                          </th>
-
-                          <th>
-
-                              <p align="right"><span id="total">{{number_format($subTotal,2)}}</span></p>
-                          </th>
-                        </tr>
-
-
-                        <tr id="dvOcultar">
-
-                          <th colspan="4">
-
-                            <p align="right">IVA:{{$purchase->tax}}%.</p>
-
-                          </th>
-
-                          <th>
-
-                            <p align="right"><span id="total_impuesto">{{number_format($subTotal* $purchase->tax/100,2)}}</span></p>
-
-                          </th>
-
-                        </tr>
-
-                      <tr>
-
-                        <th colspan="4">
-
-                          <p align="right"><span id="">TOTAL PAGAR.</span></p>
-
-                        </th>
-
-                        <th>
-
-                          <p align="right">{{number_format($purchase->total,2)}}</p>
-
-                        </th>
-                      </tr>
-                      </tfoot>
-
-
-                      </table>
-
-                    </div>
-
-
-
-
-                  </div>
 
 
                 </div>
@@ -193,10 +107,7 @@ width: 50%;
                 </div>
             </div>
         </div>
-
-
-
-
+    </div>
 
 </div>
 @endsection

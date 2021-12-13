@@ -29,12 +29,23 @@
 <div class="form-group">
 
 <label for="productos">Productos</label>
-<select class="form-control" name="product_id" id="product_id">
+<select class="form-control" name="product_id" id="product_id" >
 
   @foreach ($products as $product)
 
+@if ($product->status == 'ACTIVE')
+
+
 
     <option value="{{$product->id}}">{{$product->name}}</option>
+
+  @else
+
+
+    <option value="" > </option>
+
+
+    @endif
 
   @endforeach
 
@@ -82,9 +93,9 @@
         <tr>
           <th>Eliminar</th>
           <th>Producto</th>
-          <th>Precio(PEN)</th>
+          <th>Precio(CHL)</th>
           <th>Cantidad</th>
-          <th>SubTotal(PEN)</th>
+          <th>SubTotal(CHL)</th>
         </tr>
       </thead>
 
@@ -97,7 +108,7 @@
 
           <th>
 
-              <p align="right"><span id="total">PEN 0.00</span></p>
+              <p align="right"><span id="total">CHL 0.00</span></p>
           </th>
         </tr>
 
@@ -112,7 +123,7 @@
 
           <th>
 
-            <p align="right"><span id="total_impuesto">PEN 0.00</span></p>
+            <p align="right"><span id="total_impuesto">CHL 0.00</span></p>
 
           </th>
 
@@ -128,7 +139,7 @@
 
         <th>
 
-          <p align="right"><span align="right" id="total_pagar_html">PEN 0.00</span><input type="hidden" name="total" id="total_pagar"></p>
+          <p align="right"><span align="right" id="total_pagar_html">CHL 0.00</span><input type="hidden" name="total" id="total_pagar"></p>
 
         </th>
       </tr>

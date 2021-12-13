@@ -61,7 +61,7 @@
                             <tr>
                               <th>ID</th>
                               <th>Nombre</th>
-                              <th>Stock kilos</th>
+                              <th>Stock Obillos</th>
                               <th>Estado</th>
                               <th>Categoria</th>
                               <th>Acciones</th>
@@ -82,7 +82,36 @@
                                 </td>
 
                                 <td>{{$product->stock}}</td>
-                                <td>{{$product->status}}</td>
+
+                                @if ($product->status == 'ACTIVE')
+                                  <td>
+
+                                  <a class="jsgrid-button btn btn-success" href="{{route('change.status.products', $product)}}" title="Editar">
+                                                                          Activo  <i class="fas fa-check"></i>
+                                                                      </a>
+
+
+
+
+                                    </td>
+
+                                @else
+
+
+                                  <td>
+
+                                  <a class="jsgrid-button btn btn-danger" href="{{route('change.status.products', $product)}}" title="Editar">
+                                                                          Cancelado  <i class="fas fa-times"></i>
+                                                                      </a>
+
+
+
+
+                                    </td>
+
+                                @endif
+
+
                                   <td>{{$product->category->name}}</td>
 
 
