@@ -30,8 +30,8 @@ class UpdateRequest extends FormRequest
 'email'=> 'required|email|string|unique:providers,email,'.
 $this->route('provider')->id.'|max:255',
 
-'rut'=> 'required|string|min:11|unique:providers,rut,'.
-$this->route('provider')->id.'|max:11',
+'rut'=> 'required|string|min:9|unique:providers,rut,'.
+$this->route('provider')->id.'|max:9',
 
 'address'=> 'nullable|string|max:255',
 

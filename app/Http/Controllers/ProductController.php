@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Product\StoreRequest;
 use App\Http\Requests\Product\UpdateRequest;
 
+use Illuminate\Support\Facades\Storage;
+
 class ProductController extends Controller
 {
     /**
@@ -16,6 +18,24 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+     public function __construct(){
+
+       $this->middleware('auth');
+       $this->middleware('can:product.create')->only(['create','store']);
+       $this->middleware('can:product.index')->only(['index']);
+       $this->middleware('can:product.edit')->only(['edit','update']);
+        $this->middleware('can:product.show')->only(['show']);
+         $this->middleware('can:product.destroy')->only(['destroy']);
+          $this->middleware('can:change.status.products')->only(['change_status']);
+
+
+
+
+     }
+
+
     public function index()
     {
 
@@ -29,15 +49,52 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Product $product)
     {
 
 
-      $categories = Category::get();
+      $categories = Category::where('name','=','lanas')->get();
 
       $providers = Provider::get();
 
-          return view('admin.product.create',compact('categories','providers'));
+
+
+
+
+          return view('admin.product.create',compact('categories','providers','product'));
+    }
+
+
+    public function persiana(Product $product)
+    {
+
+
+      $categories = Category::where('name','=','Persianas')->get();
+
+      $providers = Provider::get();
+
+
+
+
+
+          return view('admin.product.persiana',compact('categories','providers','product'));
+    }
+
+
+
+    public function cordoneria(Product $product)
+    {
+
+
+      $categories = Category::where('name','=','Cordoneria')->get();
+
+      $providers = Provider::get();
+
+
+
+
+
+          return view('admin.product.cordoneria',compact('categories','providers','product'));
     }
 
     /**
@@ -46,12 +103,65 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRequest $request)
+    public function store(StoreRequest $request,Product $product)
     {
 
-Product::create($request->all());
 
-return redirect()->route('products.index');
+/*
+
+if ($request->hasFile('image')) {
+
+$file = $request->file('image');
+$image_name = time().'_'.$file->getClientOriginalName();
+$file->move(public_path("/image"),$image_name);
+
+
+}
+
+
+$product = Product::create($request->all()+[
+'image' => $image_name,
+
+]);
+
+
+*/
+
+
+
+if ($request->file('file')) {
+
+$file = $request->file('file');
+$image_name = time().'_'.$file->getClientOriginalName();
+$file->move(public_path("/image"),$image_name);
+
+}
+/*
+$file = $request->file('file');
+$imagen = time()."_".$file->getClientOriginalName();
+$file->move(public_path("/image"),$imagen);
+
+*/
+
+
+
+
+
+
+$product = Product::create($request->all() +[
+
+'image' => $image_name
+
+
+
+
+]);
+
+$product->update(['code' => $product->id]);
+
+
+
+return redirect()->route('product.index');
 
 
     }
@@ -90,11 +200,37 @@ return redirect()->route('products.index');
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRequest $request, Product $product)
+    public function update(StoreRequest $request, Product $product)
     {
-      $product->update($request->all());
 
-      return redirect()->route('products.index');
+
+      if ($request->file('file')) {
+
+      $file = $request->file('file');
+      $image_name = time().'_'.$file->getClientOriginalName();
+      $file->move(public_path("/image"),$image_name);
+
+
+      }
+
+
+       $product->update($request->all()+[
+      'image' => $image_name,
+
+
+      ]);
+
+
+
+
+$product->update($request->all());
+
+
+
+
+
+
+      return redirect()->route('product.index',$product);
     }
 
     /**
@@ -106,7 +242,38 @@ return redirect()->route('products.index');
     public function destroy(Product $product)
     {
         $product->delete();
-return redirect()->route('products.index');
+return redirect()->route('product.index');
 
     }
+
+
+      public function upload(){
+
+//
+
+      }
+
+
+      public function change_status(Product $product){
+
+
+        if ($product->status == 'ACTIVE') {
+
+
+        $product->update(['status'=>'DEACTIVATED']);
+
+        return redirect()->back();
+
+
+      }else{
+
+
+          $product->update(['status'=>'ACTIVE']);
+          return redirect()->back();
+
+
+      }
+
+
+      }
 }

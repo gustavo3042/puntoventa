@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
 
-protected $fillable = ['code','name','stock','image','price',
+protected $fillable = ['code','name','codigoColor','stock','totalObillos','image','price',
 'status','category_id','provider_id',];
 
 
@@ -21,5 +21,23 @@ public function provider(){
 
   return $this->belongsTo(Provider::class);
 }
+
+
+
+/*
+public function purchase(){
+
+  return $this->belongsTo(Product::class);
+}
+*/
+
+
+/*
+public function image(){
+
+  return $this->morphOne(Image::class, 'imageable');
+}
+
+*/
 
 }

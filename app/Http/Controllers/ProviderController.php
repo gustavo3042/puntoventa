@@ -14,6 +14,22 @@ class ProviderController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
+
+   public function __construct(){
+
+     $this->middleware('auth');
+     $this->middleware('can:provider.create')->only(['create','store']);
+     $this->middleware('can:provider.index')->only(['index']);
+     $this->middleware('can:provider.edit')->only(['edit','update']);
+      $this->middleware('can:provider.show')->only(['show']);
+       $this->middleware('can:provider.destroy')->only(['destroy']);
+    
+
+
+
+
+   }
+
   public function index()
   {
     $providers = Provider::get();
@@ -38,10 +54,11 @@ class ProviderController extends Controller
    */
   public function store(StoreRequest $request)
   {
-      Provider::create($request->all());
+
+  $provider =    Provider::create($request->all());
 
 
-      return redirect()->route('providers.index');
+      return redirect()->route('provider.index');
   }
 
   /**
@@ -81,7 +98,7 @@ class ProviderController extends Controller
     $provider->update($request->all());
 
 
-    return redirect()->route('providers.index');
+    return redirect()->route('provider.index');
 
   }
 
@@ -95,6 +112,6 @@ class ProviderController extends Controller
   {
       $provider->delete();
 
-      return redirect()->route('providers.index');
+      return redirect()->route('provider.index');
   }
 }

@@ -14,10 +14,25 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+     public function __construct(){
+
+       $this->middleware('auth');
+       $this->middleware('can:categoria.create')->only(['create','store']);
+       $this->middleware('can:categoria.index')->only(['index']);
+       $this->middleware('can:categoria.edit')->only(['edit','update']);
+        $this->middleware('can:categoria.show')->only(['show']);
+         $this->middleware('can:categoria.destroy')->only(['destroy']);
+
+
+
+     }
+
     public function index()
     {
       $categories = Category::get();
-      return view('admin.category.index',compact('categories'));
+      return view('admin.categories.index',compact('categories'));
     }
 
     /**
@@ -27,7 +42,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create');
+        return view('admin.categories.create');
     }
 
     /**
@@ -63,7 +78,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('admin.category.edit',compact('category'));
+        return view('admin.categories.edit',compact('category'));
     }
 
     /**

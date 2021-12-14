@@ -25,10 +25,12 @@ class StoreRequest extends FormRequest
     {
         return [
 
-          'name' => 'required|unique:products|max:255',
-          'image' => 'required|dimensions:min_width=100,min_height=200',
-          'price' => '',
-          'category_id' => 'integer'
+          'name' => 'required|max:255',
+          'codigoColor' =>'required|',
+          'stock' =>'required|',
+          'totalObillos' =>'required|',
+          'price' => 'required|'
+
 
 
 
@@ -41,13 +43,26 @@ class StoreRequest extends FormRequest
 
       return[
 
-  'name.required'=>'Este campo es requerido',
   'name.string'=>'El valor no es correcto',
-  'name.max'=>'Solo se permite 50 caracteres',
+  'name.required'=>'El campo es requerido',
+  //'name.unique'=>'El producto ya esta registrado',
+  'name.max' => 'Solo se permiten 255 caracteres',
 
-  'description.required'=>'Este campo es requerido',
-  'description.string'=>'El valor no es correcto',
-  'description.max'=>'Solo se permite 255 caracteres',
+
+
+'codigoColor' =>'El codigo es requerido',
+
+'stock'=>'El stock es requerido',
+'totalObillos'=>'La cantidad de Kilpos es requerida',
+
+
+  'price.required'=>'El campo es requerido',
+
+
+
+
+
+
 
       ];
     }
